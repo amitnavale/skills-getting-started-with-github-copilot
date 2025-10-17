@@ -81,8 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
         messageDiv.className = "message success";
         signupForm.reset();
 
-        // Refresh activities so participants & availability update immediately
-        await fetchActivities();
+        // Add a small delay to ensure server state is updated before fetching
+        setTimeout(async () => {
+          await fetchActivities();
+        }, 100);
       } else {
         messageDiv.textContent = result.detail || "An error occurred";
         messageDiv.className = "message error";
